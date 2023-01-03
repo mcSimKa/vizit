@@ -1,23 +1,48 @@
 from django.db import models
 
-# Create your models here.
+class ServiceCategory(models.Model):
+    categoryName = models.CharField(max_length=64)
+    
+    def __str__(self):
+        return self.categoryName
+
+
 class Service(models.Model):
-    Name = models.CharField(max_length=100)
-    Phone = models.CharField(max_length=32)
-    Address = models.CharField(max_length=100)
+    serviceName = models.CharField(max_length=64)
+    serviceCategory = models.ForeignKey(ServiceCategory, on_delete=models.CASCADE)
+    #methods
+    def __str__(self) -> str:
+        return self.serviceName 
+
+        
+class Company(models.Model):
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=32)
     url = models.URLField()
-    def __str__(self) -> str:
-        return self.Name+'('+self.url+')'
-
-class Address(models.Model):
-    CityName = models.CharField(max_length=100)
-    StreetName = models.CharField(max_length=100)
-    Building = models.CharField(max_length=12)
-    Room = models.CharField(max_length=5)
+    serviceCategory = models.ForeignKey(ServiceCategory, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return '('+self.CityName+')|('+self.StreetName+')|('+self.Building+')'
+        return self.name+'('+self.url+')'
 
-class ServiceLocation(models.Model):
-    ServiceId = models.ForeignKey(Service, on_delete=models.CASCADE)
-    AddressId = models.ForeignKey(Address, on_delete=models.CASCADE)
+
+class Addresses(models.Model):
+    city = models.CharField(max_length=100)
+    street = models.CharField(max_length=100)
+    building = models.CharField(max_length=12)
+    room = models.CharField(max_length=5)
+
+    def __str__(self) -> str:
+        return '('+self.city+')|('+self.street+')|('+self.building+')'
+
+
+class CompanyServices(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.company.name+"|"+self.company.serviceCategory.categoryName+"\\"+self.service.serviceName
+
+
+class CompanyLocation(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    address = models.ForeignKey(Addresses, on_delete=models.CASCADE)
