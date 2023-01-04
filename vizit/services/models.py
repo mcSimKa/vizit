@@ -3,18 +3,18 @@ from django.db import models
 #general dictionaries 
 #serviceCategories={'car service','dentist','beauty cetre'}
 class ServiceCategory(models.Model):
-    categoryName = models.CharField(max_length=64)
+    name = models.CharField(max_length=64)
    
     def __str__(self):
-        return self.categoryName
+        return self.name
 
 #service={'manicure', 'tooth repair', 'oil replacement'}
 class Service(models.Model):
-    service_name = models.CharField(max_length=64)
-    service_category = models.ForeignKey(ServiceCategory, on_delete=models.CASCADE)
+    name = models.CharField(max_length=64)
+    category = models.ForeignKey(ServiceCategory, on_delete=models.CASCADE)
     #methods
     def __str__(self) -> str:
-        return self.service_name +"|"+self.service_category.categoryName
+        return self.name +"|"+self.category.name
 
 #master qualification =
 class Qualification(models.Model):
@@ -24,11 +24,11 @@ class Qualification(models.Model):
         return self.title
 
 class Master(models.Model):
-    masterName = models.CharField(max_length=64)
+    name = models.CharField(max_length=64)
     qualification = models.ForeignKey(Qualification, on_delete=models.DO_NOTHING)
 
     def __str__(self) -> str:
-        return self.masterName
+        return self.name
 
          
 class Company(models.Model):
