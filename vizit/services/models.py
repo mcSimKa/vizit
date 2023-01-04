@@ -4,20 +4,17 @@ from django.db import models
 #serviceCategories={'car service','dentist','beauty cetre'}
 class ServiceCategory(models.Model):
     categoryName = models.CharField(max_length=64)
-
-    def __init__(self, categoryName) -> None:
-        self.categoryName = categoryName
-    
+   
     def __str__(self):
         return self.categoryName
 
 #service={'manicure', 'tooth repair', 'oil replacement'}
 class Service(models.Model):
-    serviceName = models.CharField(max_length=64)
-    serviceCategory = models.ForeignKey(ServiceCategory, on_delete=models.CASCADE)
+    service_name = models.CharField(max_length=64)
+    service_category = models.ForeignKey(ServiceCategory, on_delete=models.CASCADE)
     #methods
     def __str__(self) -> str:
-        return self.serviceName 
+        return self.service_name +"|"+self.service_category.categoryName
 
 #master qualification =
 class Qualification(models.Model):
