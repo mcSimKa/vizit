@@ -8,6 +8,22 @@ class ServiceCategory(models.Model):
     def __str__(self):
         return self.name
 
+#master qualification =
+class Qualification(models.Model):
+    title = models.CharField(max_length=64)
+    
+    def __str__(self) -> str:
+        return self.title
+
+class Address(models.Model):
+    city = models.CharField(max_length=100)
+    street = models.CharField(max_length=100)
+    building = models.CharField(max_length=12)
+    room = models.CharField(max_length=5)
+
+    def __str__(self) -> str:
+        return '('+self.city+')|('+self.street+')|('+self.building+')'
+
 #service={'manicure', 'tooth repair', 'oil replacement'}
 class Service(models.Model):
     name = models.CharField(max_length=64)
@@ -15,13 +31,6 @@ class Service(models.Model):
     #methods
     def __str__(self) -> str:
         return self.name +"|"+self.category.name
-
-#master qualification =
-class Qualification(models.Model):
-    title = models.CharField(max_length=64)
-    
-    def __str__(self) -> str:
-        return self.title
 
 class Master(models.Model):
     name = models.CharField(max_length=64)
@@ -41,16 +50,6 @@ class Company(models.Model):
         return self.name+'('+self.url+')'
 
 
-class Addresses(models.Model):
-    city = models.CharField(max_length=100)
-    street = models.CharField(max_length=100)
-    building = models.CharField(max_length=12)
-    room = models.CharField(max_length=5)
-
-    def __str__(self) -> str:
-        return '('+self.city+')|('+self.street+')|('+self.building+')'
-
-
 class CompanyServices(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
@@ -61,7 +60,7 @@ class CompanyServices(models.Model):
 
 class CompanyLocation(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
-    address = models.ForeignKey(Addresses, on_delete=models.CASCADE)
+    address = models.ForeignKey(Address, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return self.company.name+"|"+self.address.__str__()

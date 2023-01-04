@@ -18,6 +18,24 @@
   pk: 5
   fields:
     name: Боулинг
-
-
+- model: services.Qualification
+  pk: 1
+  fields:
+    title: стоматолог
+- model: services.Qualification
+  pk: 2
+  fields:
+    title: ортодонт
+- model: services.Qualification
+  pk: 3
+  fields:
+    title: хірург
+- model: services.Qualification
+  pk: 4
+  fields:
+    title: імплантолог
+- model: services.Qualification
+  pk: 5
+  fields:
+    title: автослюсар
 
