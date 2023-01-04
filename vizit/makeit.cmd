@@ -4,4 +4,5 @@ SET DJANGO_SUPERUSER_EMAIL='mkisunko@gmail.com'
 python manage.py makemigrations services
 python manage.py migrate
 python manage.py createsuperuser --no-input
+python manage.py loaddata general.yaml 
 python manage.py runserver

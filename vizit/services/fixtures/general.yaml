@@ -1,0 +1,23 @@
+- model: services.ServiceCategory
+  pk: 1
+  fields:
+    name: Салон краси
+- model: services.ServiceCategory
+  pk: 2
+  fields:
+    name: Автосервис
+- model: services.ServiceCategory
+  pk: 3
+  fields:
+    name: Стоматологія
+- model: services.ServiceCategory
+  pk: 4
+  fields:
+    name: Манікюр
+- model: services.ServiceCategory
+  pk: 5
+  fields:
+    name: Боулинг
+
+
+
