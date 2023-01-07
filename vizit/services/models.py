@@ -1,7 +1,8 @@
 from django.db import models
+from geodata.models import Address, Country, Language
 
 #general dictionaries 
-#serviceCategories={'car service','dentist','beauty cetre'}
+''' ServiceCategories category to group services on general level like {'car service','dentist','beauty cetre'} '''
 class ServiceCategory(models.Model):
     name = models.CharField(max_length=64)
    
@@ -9,22 +10,16 @@ class ServiceCategory(models.Model):
         return self.name
 
 #master qualification =
+''' Qaulifications is master specific category {'dentist','surgery','master of manicure','barber','stylist','makeup'}'''
 class Qualification(models.Model):
     title = models.CharField(max_length=64)
     
     def __str__(self) -> str:
         return self.title
 
-class Address(models.Model):
-    city = models.CharField(max_length=100)
-    street = models.CharField(max_length=100)
-    building = models.CharField(max_length=12)
-    room = models.CharField(max_length=5)
 
-    def __str__(self) -> str:
-        return '('+self.city+')|('+self.street+')|('+self.building+')'
-
-#service={'manicure', 'tooth repair', 'oil replacement'}
+'''Servcies is general category that defines global areas on the market 
+   service={'manicure', 'tooth repair', 'oil replacement'}'''
 class Service(models.Model):
     name = models.CharField(max_length=64)
     category = models.ForeignKey(ServiceCategory, on_delete=models.CASCADE)
@@ -50,7 +45,7 @@ class Company(models.Model):
         return self.name+'('+self.url+')'
 
 
-class CompanyServices(models.Model):
+class CompanyService(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
 

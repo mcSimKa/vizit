@@ -5,4 +5,5 @@ python manage.py makemigrations services
 python manage.py migrate
 python manage.py createsuperuser --no-input
 python manage.py loaddata general.yaml 
+python manage.py loaddata geodata.yaml 
 python manage.py runserver
