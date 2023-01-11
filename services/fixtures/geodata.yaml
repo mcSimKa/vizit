@@ -19,3 +19,11 @@
     name: Україна
     tag: UA
     main_language: 1
+- model: geodata.Address
+  pk: 1
+  fields:
+    city: Київ
+    street: Ірпінська
+    building: 69б
+    room: floor
+    country: 1
