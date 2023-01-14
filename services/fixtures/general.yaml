@@ -1,0 +1,40 @@
+- model: services.ServiceCategory
+  pk: 1
+  fields:
+    name: Салон краси
+- model: services.ServiceCategory
+  pk: 2
+  fields:
+    name: Автосервис
+- model: services.ServiceCategory
+  pk: 3
+  fields:
+    name: Стоматологія
+- model: services.ServiceCategory
+  pk: 4
+  fields:
+    name: Манікюр
+- model: services.ServiceCategory
+  pk: 5
+  fields:
+    name: Боулинг
+- model: services.Qualification
+  pk: 1
+  fields:
+    title: стоматолог
+- model: services.Qualification
+  pk: 2
+  fields:
+    title: ортодонт
+- model: services.Qualification
+  pk: 3
+  fields:
+    title: хірург
+- model: services.Qualification
+  pk: 4
+  fields:
+    title: імплантолог
+- model: services.Qualification
+  pk: 5
+  fields:
+    title: автослюсар
